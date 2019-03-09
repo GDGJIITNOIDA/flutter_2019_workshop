@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_workshop/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget{
   @override
@@ -80,12 +81,18 @@ class _LoginScreenState extends State<LoginScreen>{
               onChanged: (value){
                 _passwordError = false;
               },
+              controller: _passwordController,
             ),
             Padding(padding: EdgeInsets.only(top: 16.0)),
             Container(
               width: MediaQuery.of(context).size.width,
               child: RaisedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
                 color: Colors.white,
                 textColor: Colors.green,
                 elevation: 5.0,
