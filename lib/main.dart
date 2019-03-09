@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/screens/home_screen.dart';
+import 'package:flutter_workshop/screens/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.lightGreen,
         primaryColorDark: Colors.lightGreenAccent
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
