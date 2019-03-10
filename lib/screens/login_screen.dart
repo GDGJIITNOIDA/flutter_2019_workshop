@@ -11,6 +11,9 @@ class _LoginScreenState extends State<LoginScreen>{
   bool _nameError;
   bool _passwordError;
 
+  String _nameErrorText;
+  String _passwordErrorText;
+
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -20,6 +23,56 @@ class _LoginScreenState extends State<LoginScreen>{
 
     _nameError = false;
     _passwordError = false;
+
+    _nameErrorText = "";
+    _passwordErrorText = "";
+  }
+
+  validateInputs(){
+    String name = _nameController.text;
+    String pass = _passwordController.text;
+
+    if(name.isEmpty){
+      setState(() {
+        _nameError = true;
+        _nameErrorText = "Required!";
+      });
+      return;
+    }
+
+    if(pass.isEmpty){
+      setState(() {
+        _passwordError = true;
+        _passwordErrorText = "Required!";
+      });
+      return;
+    }
+
+    if(name != "Shivamvk"){
+      setState(() {
+        _nameError = true;
+        _nameErrorText = "Incorrect name!";
+      });
+      return;
+    }
+
+    if(pass != "shivam123"){
+      setState(() {
+        _passwordError = true;
+        _passwordErrorText = "Incorrect password!";
+      });
+      return;
+    }
+
+    //inputs are fine proceed with login
+    login();
+  }
+
+  login(){
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
   }
 
   @override
@@ -50,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen>{
                 ),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(),
-                errorText: _nameError? "Required!" : null
+                errorText: _nameError? _nameErrorText : null
               ),
               style: TextStyle(
                 color: Colors.white,
@@ -72,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen>{
                 ),
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(),
-                errorText: _passwordError? "Required!" : null
+                errorText: _passwordError? _passwordErrorText : null
               ),
               obscureText: true,
               style: TextStyle(
@@ -88,10 +141,7 @@ class _LoginScreenState extends State<LoginScreen>{
               width: MediaQuery.of(context).size.width,
               child: RaisedButton(
                 onPressed: (){
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
+                  validateInputs();
                 },
                 color: Colors.white,
                 textColor: Colors.green,
