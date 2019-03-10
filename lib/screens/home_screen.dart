@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_workshop/screens/list_screen.dart';
 
 class HomeScreen extends StatefulWidget{
+
+  final String name;
+
+  HomeScreen({
+    this.name
+  });
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -43,8 +50,39 @@ class _HomeScreenState extends State<HomeScreen>{
             color: Colors.white
           ),
         ),
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.list,
+              color: Colors.white,
+            ),
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FavouritesScreen()),
+              );
+            },
+          )
+        ],
       ),
       backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text(widget.name),
+              accountEmail: Text("shivam.vk529@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(widget.name[0]),
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: _items,
         currentIndex: _currentIndex,
