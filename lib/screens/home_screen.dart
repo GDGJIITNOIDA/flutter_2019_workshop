@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/screens/list_screen.dart';
+import 'package:flutter_workshop/screens/todos_screen.dart';
 
 class HomeScreen extends StatefulWidget{
 
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen>{
     ),
     BottomNavigationBarItem(
         icon: Icon(Icons.movie),
-        title: Text("Movies")
+        title: Text("Todo")
     ),
     BottomNavigationBarItem(
         icon: Icon(Icons.person),
@@ -36,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen>{
     Container(
       child: ListScreen(),
     ),
-    Container(),
+    Container(
+      child: TodosScreen(),
+    ),
     Container(),
   ];
 

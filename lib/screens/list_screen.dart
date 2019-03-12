@@ -19,14 +19,14 @@ class _ListScreenState extends State<ListScreen>{
     }
 
     return ListView.builder(
-      itemCount: 100,
+      itemCount: _list.length,
       itemBuilder: (BuildContext context, int index){
           return _buildRow(_list, index);
       },
     );
   }
 
-  Widget _buildRow(_list, index){
+  Widget _buildRow(List<String> _list, index){
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 16.0, bottom: 8.0, right: 8.0),
       child: Column(
